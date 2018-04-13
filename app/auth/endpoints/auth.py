@@ -75,7 +75,6 @@ class TokenGenerator(Resource):
 
 @ns.route('/verify_token')
 class TokenVerifier(Resource):
-    decorators = [auth.login_required]
 
     @ns.marshal_with(token_model)
     @ns.expect(verify_token_parameters)
@@ -98,7 +97,6 @@ class TokenVerifier(Resource):
 
 @ns.route('/.well-known/jwks.json')
 class WellKnown(Resource):
-    decorators = [auth.login_required]
 
     @ns.marshal_with(jwks_model)
     def get(self):
